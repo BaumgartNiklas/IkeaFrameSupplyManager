@@ -114,7 +114,7 @@ class InventoryManagement(commands.Cog):
                         requests.append(f"{row['Name']} - Amount Needed: {row['AmountWanted'] - row['AmountDonated']}")
 
                 if len(requests) > 0:
-                    embeds[i].description = "/n".join(requests)
+                    embeds[i].description = "\n".join(requests)
                     await context.send(embed=embeds[i])
 
 
