@@ -5,7 +5,7 @@ from discord.ext.commands import Command, Cog, Context
 
 
 class CustomHelp(commands.HelpCommand):
-    def get_command_signature(self, command: Command[Any, ..., Any], /) -> str:
+    def get_command_signature(self, command: Command, /) -> str:
         return f"{self.context.clean_prefix}{command.qualified_name} {command.signature}"
 
     async def send_cog_help(self, cog: Cog, /) -> None:
