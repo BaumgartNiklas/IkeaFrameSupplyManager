@@ -5,12 +5,14 @@
 by showing them exactly which decorations and resources are currently required in the dojo.
 
 ## Usage:
-1. Create a new discord bot and put your token into the config.json
-2. Invite your new bot to your server
-3. Write `/sync` in a text channel to load the commands
-4. Set permissions for the commands
-5. Add the decorations and resources you need in the dojo via commands
-6. Profit!
+1. Install requirements via `pip install -r requirements.txt`
+2. Create a new discord bot and put your token into the config.json
+3. Run `python3 bot.py` or better yet, create a systemctl service or something like it
+4. Invite your new bot to your server
+5. Write `/sync` in a text channel to load the commands
+6. Set permissions for the commands
+7. Add the decorations and resources you need in the dojo via commands
+8. Profit!
 
 ## Commands:
 - `/listdeco` Lists all currently requested decorations and resources
