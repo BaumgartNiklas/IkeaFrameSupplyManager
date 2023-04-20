@@ -1,0 +1,6 @@
+{
+  "prefix": "/",
+  "token": "Paste Your Discord Token Here!",
+  "database_path": "/database/database.db",
+  "database_schema_path": "/database/schema.sql"
+}
