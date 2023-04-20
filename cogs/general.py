@@ -32,10 +32,9 @@ class Sync(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def sync(self, context: Context, spec: Optional[Literal["~", "*", "^"]] = None) -> None:
-        context.bot.tree.copy_global_to(guild=context.guild)
-        synced = await context.bot.tree.sync(guild=context.guild)
-        await context.send(f"Synced {len(synced)} commands {'globally' if spec is None else 'to the current guild.'}")
+    async def sync(self, context: Context) -> None:
+        await context.bot.tree.sync()
+        await context.send(f"Synced commands")
 
 
 async def setup(bot):
