@@ -1,5 +1,4 @@
 import discord
-from typing import Any, Optional, Literal
 from discord.ext import commands
 from discord.ext.commands import Command, Cog, Context
 
