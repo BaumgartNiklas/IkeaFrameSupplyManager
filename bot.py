@@ -54,19 +54,19 @@ async def on_ready() -> None:
 async def on_command_error(context: Context, error) -> None:
     if isinstance(error, cogs.DecorationNotFound):
         embed = discord.Embed(description="No corresponding request was found")
-        await context.send(embed=embed)
+        await context.reply(embed=embed)
 
     elif isinstance(error, commands.MissingPermissions):
         embed = discord.Embed(description=f"Insufficient Permissions. You need to be at least one of {', '.join(error.missing_permissions)}.")
-        await context.send(embed=embed)
+        await context.reply(embed=embed)
 
     elif isinstance(error, commands.BotMissingPermissions):
         embed = discord.Embed(description=f"I am missing Permissions to perform this action: {', '.join(error.missing_permissions)}")
-        await context.send(embed=embed)
+        await context.reply(embed=embed)
 
     elif isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(description=str(error).capitalize())
-        await context.send(embed=embed)
+        await context.reply(embed=embed)
 
     else:
         raise error
