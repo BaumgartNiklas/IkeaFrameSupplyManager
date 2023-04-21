@@ -7,14 +7,6 @@ from discord.ext import commands
 from discord.ext.commands import Context
 
 
-class DecorationNotFound(commands.CheckFailure):
-    """Exception, Thrown when a request is not found"""
-
-    def __init__(self, message="No corresponding request found!"):
-        self.message = message
-        super().__init__(self.message)
-
-
 class InventoryManagement(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -56,7 +48,9 @@ class InventoryManagement(commands.Cog):
             async with db.execute("SELECT * FROM Decoration WHERE Name=?", (name,)) as result:
                 answer = await result.fetchone()
                 if answer is None:
-                    raise DecorationNotFound
+                    embed = discord.Embed(title="Deco Not Found!", description="The specified requested decoration was not found", color=self.color)
+                    await context.reply(embed=embed, ephemeral=True)
+                    return
 
                 await db.execute("DELETE FROM Decoration WHERE Name=?", (answer["Name"],))
                 await db.commit()
@@ -78,7 +72,11 @@ class InventoryManagement(commands.Cog):
             async with db.execute("SELECT * FROM Decoration WHERE Name=?", (name,)) as result:
                 answer = await result.fetchone()
                 if answer is None:
-                    raise DecorationNotFound
+                    embed = discord.Embed(title="Deco Not Found!",
+                                          description="The specified decoration was not found in the request list",
+                                          color=self.color)
+                    await context.reply(embed=embed, ephemeral=True)
+                    return
 
                 if answer["AmountDonated"] + amount >= answer["AmountWanted"]:
                     await db.execute("DELETE FROM Decoration WHERE Name=?", (answer["Name"],))

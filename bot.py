@@ -52,11 +52,7 @@ async def on_ready() -> None:
 
 @bot.event
 async def on_command_error(context: Context, error) -> None:
-    if isinstance(error, cogs.DecorationNotFound):
-        embed = discord.Embed(description="No corresponding request was found")
-        await context.reply(embed=embed)
-
-    elif isinstance(error, commands.MissingPermissions):
+    if isinstance(error, commands.MissingPermissions):
         embed = discord.Embed(description=f"Insufficient Permissions. You need to be at least one of {', '.join(error.missing_permissions)}.")
         await context.reply(embed=embed)
 
