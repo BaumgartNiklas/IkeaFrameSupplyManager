@@ -25,7 +25,7 @@ class InventoryManagement(commands.Cog):
             async with db.execute("SELECT * FROM Decoration WHERE Name=?", (name,)) as result:
                 answer = await result.fetchone()
                 if answer is not None:
-                    await db.execute("Update Decoration SET requested AmountWanted=? WHERE Name=?",
+                    await db.execute("Update Decoration SET AmountWanted=? WHERE Name=?",
                                      (answer["AmountWanted"] + amount, answer["Name"]))
                     await db.commit()
                 else:
