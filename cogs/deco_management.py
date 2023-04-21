@@ -43,7 +43,7 @@ class InventoryManagement(commands.Cog):
                     await db.commit()
 
         embed = discord.Embed(title="Added request", description="The request has been added", color=self.color)
-        await context.send(embed=embed)
+        await context.reply(embed=embed, ephemeral=True)
 
     @commands.hybrid_command(name="removedeco", description="Delete a request")
     @app_commands.describe(
@@ -62,7 +62,7 @@ class InventoryManagement(commands.Cog):
                 await db.commit()
 
         embed = discord.Embed(title="Request Removed!", description="The request has been removed.", color=self.color)
-        await context.send(embed=embed)
+        await context.reply(embed=embed, ephemeral=True)
 
     @commands.hybrid_command(name="donatedeco", description="Donate a decoration from a request")
     @app_commands.describe(
@@ -88,7 +88,7 @@ class InventoryManagement(commands.Cog):
                                  (answer["AmountDonated"] + amount, answer["Name"]))
                 await db.commit()
 
-            await context.send(embed=embed)
+            await context.reply(embed=embed)
 
     @commands.hybrid_command(name="listdeco", description="List all requests")
     async def list(self, context: Context):
@@ -103,7 +103,7 @@ class InventoryManagement(commands.Cog):
                 answer = await result.fetchone()
                 if answer is None:
                     embed = discord.Embed(title="Such Emtpy!", description="Yay, there are no active requests waiting to be fulfilled", color=self.color)
-                    await context.send(embed=embed)
+                    await context.reply(embed=embed)
                     return
 
             for i in range(0, 3):
@@ -115,7 +115,7 @@ class InventoryManagement(commands.Cog):
 
                 if len(requests) > 0:
                     embeds[i].description = "\n".join(requests)
-                    await context.send(embed=embeds[i])
+                    await context.reply(embed=embeds[i])
 
 
 async def setup(bot):

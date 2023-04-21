@@ -33,7 +33,7 @@ class Sync(commands.Cog):
     @commands.command()
     async def sync(self, context: Context) -> None:
         await context.bot.tree.sync()
-        await context.send(f"Synced commands")
+        await context.reply(f"Synced commands")
 
 
 async def setup(bot):
